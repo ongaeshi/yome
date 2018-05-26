@@ -5,9 +5,17 @@ require "find"
 module Yome
   class Cli
     def self.start(argv)
-      Find.find(ARGV[0]) do |path|
+      if argv.length == 1
+        find(argv[0])
+      else
+        puts "yome [DIR]"
+      end
+    end
+
+    def self.find(dir)
+      Find.find(dir) do |path|
         Find.prune if Lib::ignore?(File.basename(path))
-        next if FileTest.directory?(path) || Lib::binary?(path)
+      next if FileTest.directory?(path) || Lib::binary?(path)
         
         open(path) do |io|
           io.each_line do |line|
