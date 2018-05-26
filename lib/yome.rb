@@ -1,5 +1,22 @@
 require "yome/version"
+require "find"
 
 module Yome
-  # Your code goes here...
+  def self.ignore?(path)
+    path == ".git" || path == "oboe.rb"
+  end
+end
+  
+Find.find(ARGV[0]) do |path|
+  Find.prune if Yome::ignore?(File.basename(path))
+  next if FileTest.directory?(path)
+  
+  open(path) do |io|
+    io.each_line do |line|
+      if line =~ /oboe:/
+        puts "--- #{path} ---"
+        puts "#{io.lineno}: #{line}"
+      end
+    end
+  end
 end
