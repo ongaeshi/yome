@@ -13,7 +13,7 @@ Find.find(ARGV[0]) do |path|
   
   open(path) do |io|
     io.each_line do |line|
-      if line =~ /oboe:/
+      if line =~ /YOME:/
         puts "--- #{path} ---"
         puts "#{io.lineno}: #{line}"
       end
