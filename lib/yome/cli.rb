@@ -1,21 +1,15 @@
 require "yome/version"
 require "yome/lib"
 require "find"
+require "thor"
 
 module Yome
-  class Cli
-    def self.start(argv)
-      if argv.length == 1
-        find(argv[0])
-      else
-        puts "yome [DIR]"
-      end
-    end
-
-    def self.find(dir)
+  class Cli < Thor
+    desc "show DIR", "Show result."
+    def show(dir = ".")
       Find.find(dir) do |path|
         Find.prune if Lib::ignore?(File.basename(path))
-      next if FileTest.directory?(path) || Lib::binary?(path)
+        next if FileTest.directory?(path) || Lib::binary?(path)
         
         open(path) do |io|
           io.each_line do |line|
@@ -26,7 +20,12 @@ module Yome
           end
         end
       end
-    end 
+    end
+
+    desc "gen DIR", "Generate YOME.md"
+    def gen(dir = ".")
+      # Save to file
+    end
   end
 end
   

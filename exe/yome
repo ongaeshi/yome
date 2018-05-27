@@ -2,4 +2,4 @@
 
 require "yome"
 
-Yome::Cli.start(ARGV)
+Yome::Cli.start
