@@ -16,8 +16,13 @@ module Yome
       Find.find(dir) do |path|
         Find.prune if Lib::ignore?(File.basename(path))
         next if FileTest.directory?(path) || Lib::binary?(path)
-        
-        contents = File.read(path).split("\n")
+
+        begin
+          contents = File.read(path).split("\n")
+        rescue ArgumentError
+          puts "Skip #{path}"
+          next
+        end
 
         contents.each_with_index do |line, i|
           if line =~ /YOME:/
