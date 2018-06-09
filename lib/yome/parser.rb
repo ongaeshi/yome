@@ -3,6 +3,16 @@ require "yome/lib"
 module Yome
   class Parser
     def initialize(dir)
+      @file_hash = {}
+      @chips = []
+
+      collect_chips(dir)
+
+      p @file_hash.keys
+      p @chips
+    end
+
+    def collect_chips(dir)
       Find.find(dir) do |path|
         Find.prune if Lib::ignore?(File.basename(path))
         next if FileTest.directory?(path) || Lib::binary?(path)
@@ -11,8 +21,9 @@ module Yome
 
         contents.each_with_index do |line, i|
           if line =~ /YOME:/
-            puts "--- #{path.gsub(/^\.\//, "")} ---"
-            puts "#{i + 1}: #{line}"
+            path = path.gsub(/^\.\//, "")
+            @file_hash[path] = contents
+            @chips << Chip.new(line)
           end
         end 
       end
