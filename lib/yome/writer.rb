@@ -5,6 +5,10 @@ module Yome
         case e.kind
         when "title"
           @title = e.content
+        when "summary"
+          @summary = e.content
+        when "url"
+          @url = e.content
         end
       end
     end
@@ -12,6 +16,9 @@ module Yome
     def result
       <<EOS
 \# #{@title}
+#{@summary}
+
+#{@url}
 EOS
     end
   end
