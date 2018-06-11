@@ -2,14 +2,13 @@ require "yome/lib"
 
 module Yome
   class Parser
+    attr_reader :file_hash, :chips
+
     def initialize(dir)
       @file_hash = {}
       @chips = []
 
       collect_chips(dir)
-
-      p @file_hash.keys
-      p @chips
     end
 
     def collect_chips(dir)
