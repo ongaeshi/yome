@@ -28,7 +28,7 @@ module Yome
           if line =~ /YOME:/
             path = path.gsub(/^\.\//, "")
             @file_hash[path] = contents
-            @chips << Chip.new(line)
+            @chips << Chip.new(line, i)
           end
         end 
       end
