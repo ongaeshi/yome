@@ -3,9 +3,12 @@ module Yome
     attr_reader :kind
     attr_reader :content
     attr_reader :priority
+    attr_reader :path
+    attr_reader :index
 
-    def initialize(line, index)
+    def initialize(line, path, index)
       @kind, @content = line.scan(/YOME:([\w.,]*) (.*)/)[0]
+      @path = path
       @index = index
   
       # text chip?
