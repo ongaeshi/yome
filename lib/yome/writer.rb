@@ -19,7 +19,7 @@ module Yome
     end
 
     def join_paragraphs
-      @pargraphs.map do |e|
+      @pargraphs.sort_by { |e| e.priority }.map do |e|
         <<EOS
 \#\# #{e.path}
 #{e.content}
