@@ -19,16 +19,26 @@ module Yome
     end
 
     def join_paragraphs
-      @pargraphs.sort_by { |e| e.priority }.map do |e|
-        <<EOS
-\#\# #{e.path}
+      str = ""
+      path = nil
+      
+      @pargraphs.sort_by { |e| e.priority }.each do |e|
+        if path != e.path
+          str += "## #{e.path}\n"
+          path = e.path
+        end
+
+        str += <<EOS
 #{e.content}
 
 \`\`\`
-#{@parser.file_hash[e.path][e.index + 1]}
+#{@parser.file_hash[e.path][(e.index + 1)]}
 \`\`\`
+
 EOS
-      end.join("\n")
+      end
+
+      str
     end
 
     def result
