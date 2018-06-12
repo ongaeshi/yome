@@ -7,7 +7,7 @@ module Yome
     attr_reader :index
 
     def initialize(line, path, index)
-      @kind, @content = line.scan(/YOME:([\w.,]*) (.*)/)[0]
+      @kind, @content = line.scan(/YOME:([\w.,]*) *(.*)/)[0]
       @path = path
       @index = index
   
