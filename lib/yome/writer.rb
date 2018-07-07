@@ -23,6 +23,12 @@ module Yome
       end
     end
 
+    def header
+      str = ""
+      str += "#{@summary}\n\n" if @summary
+      str += "#{@url}\n\n" if @url
+    end
+
     def sections
       @sections.sort_by { |e| e.priority }.map do |e|
         e.result(@parser)
@@ -32,10 +38,7 @@ module Yome
     def result
       <<EOS
 \# #{@title}
-#{@summary}
-
-#{@url}
-
+#{header}
 #{sections}
 EOS
     end
