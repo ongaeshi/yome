@@ -1,9 +1,11 @@
+require 'yome/section'
+
 module Yome
   class Writer
     def initialize(parser)
       @title = "NO TITLE"
       @parser = parser
-      @pargraphs = []
+      @sections = []
 
       parser.chips.each do |e|
         case e.kind
@@ -14,31 +16,17 @@ module Yome
         when "url"
           @url = e.content
         when "section"
-          @pargraphs << e
+          @sections << Section.new(e)
         else
           # p e
         end
       end
     end
 
-    def join_paragraphs
-      str = ""
-      path = nil
-      
-      @pargraphs.sort_by { |e| e.priority }.each do |e|
-        str += "## #{e.content}\n"
-        path = e.path
-
-        str += <<EOS
-
-\`\`\`
-#{@parser.file_hash[e.path][(e.index + 1)..(e.index + 8)].join("\n")}
-\`\`\`
-
-EOS
-      end
-
-      str
+    def sections
+      @sections.sort_by { |e| e.priority }.map do |e|
+        e.result(@parser)
+      end.join("\n")
     end
 
     def result
@@ -48,7 +36,7 @@ EOS
 
 #{@url}
 
-#{join_paragraphs}
+#{sections}
 EOS
     end
   end
