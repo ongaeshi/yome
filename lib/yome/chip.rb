@@ -11,12 +11,12 @@ module Yome
       @path = path
       @index = index
   
-      # text chip?
+      # Section or Text
       begin 
         @priority = Float(@kind)
-        @kind = "text"
+        @kind = "section"
       rescue ArgumentError
-        # priority is nil
+        @kind = "text"
       end
     end
   end
