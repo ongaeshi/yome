@@ -1,6 +1,7 @@
 module Yome
   class Writer
     def initialize(parser)
+      @title = "NO TITLE"
       @parser = parser
       @pargraphs = []
 
@@ -12,8 +13,10 @@ module Yome
           @summary = e.content
         when "url"
           @url = e.content
-        when "text"
+        when "section"
           @pargraphs << e
+        else
+          # p e
         end
       end
     end
@@ -23,13 +26,10 @@ module Yome
       path = nil
       
       @pargraphs.sort_by { |e| e.priority }.each do |e|
-        if path != e.path
-          str += "## #{e.path}\n"
-          path = e.path
-        end
+        str += "## #{e.content}\n"
+        path = e.path
 
         str += <<EOS
-#{e.content}
 
 \`\`\`
 #{@parser.file_hash[e.path][(e.index + 1)..(e.index + 8)].join("\n")}
