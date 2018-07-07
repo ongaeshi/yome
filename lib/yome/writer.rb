@@ -32,7 +32,7 @@ module Yome
 #{e.content}
 
 \`\`\`
-#{@parser.file_hash[e.path][(e.index + 1)]}
+#{@parser.file_hash[e.path][(e.index + 1)..(e.index + 8)].join("\n")}
 \`\`\`
 
 EOS
