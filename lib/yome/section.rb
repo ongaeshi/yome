@@ -17,7 +17,7 @@ module Yome
 
     def result(parser)
       <<EOS
-# #{@section.content}
+## #{@section.content}
 
 #{src_code(parser, @section, false)}
 
