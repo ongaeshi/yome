@@ -2,9 +2,10 @@ require 'yome/section'
 
 module Yome
   class Writer
-    def initialize(parser)
+    def initialize(parser, lang)
       @title = "NO TITLE"
       @parser = parser
+      @lang = lang
       @sections = []
       @texts = []
 
@@ -41,7 +42,7 @@ module Yome
 
     def sections
       @sections.sort_by { |e| e.priority }.map do |e|
-        e.result(@parser)
+        e.result(@parser, @lang) # TODO: Auto detect lang
       end.join("\n")
     end
 

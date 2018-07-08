@@ -15,19 +15,19 @@ module Yome
       @texts << chip
     end
 
-    def result(parser)
+    def result(parser, lang)
       <<EOS
 ## #{@section.content}
 
-#{src_code(parser, @section, false)}
+#{src_code(parser, @section, false, lang)}
 
-#{@texts.map { |e| src_code(parser, e, true) }.join("\n")}
+#{@texts.map { |e| src_code(parser, e, true, lang) }.join("\n")}
 EOS
     end
 
     private
 
-    def src_code(parser, chip, with_text)
+    def src_code(parser, chip, with_text, lang)
       r = []
 
       if with_text
@@ -35,7 +35,7 @@ EOS
         r << ""
       end 
 
-      r << "```"
+      r << "```#{lang}"
       r << parser.file_hash[chip.path][(chip.index + 1)..(chip.index + 8)].join("\n")
       r << "```"
 

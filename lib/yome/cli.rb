@@ -8,9 +8,9 @@ require "yome/version"
 module Yome
   class Cli < Thor
     desc "show DIR", "Show result."
-    def show(dir = ".")
+    def show(dir = ".", lang = "")
       parser = Parser.new(dir)
-      writer = Writer.new(parser)
+      writer = Writer.new(parser, lang)
       puts writer.result
     end
 
