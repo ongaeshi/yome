@@ -24,7 +24,7 @@ module Yome
       end
 
       @texts.each do |e|
-        @sections.each do |sec|
+        @sections.reverse.each do |sec|
           if e.path == sec.section.path && e.index > sec.section.index
             sec.add_text(e)
             break
