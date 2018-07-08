@@ -10,13 +10,16 @@ module Yome
       @kind, @content = line.scan(/YOME:([\w.,]*) *(.*)/)[0]
       @path = path
       @index = index
-  
-      # Section or Text
-      begin 
-        @priority = Float(@kind)
-        @kind = "section"
-      rescue ArgumentError
+
+      if @kind == ""
         @kind = "text"
+      else
+        # section?
+        begin 
+          @priority = Float(@kind)
+          @kind = "section"
+        rescue ArgumentError
+        end
       end
     end
   end
