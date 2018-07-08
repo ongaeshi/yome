@@ -6,6 +6,7 @@ module Yome
       @title = "NO TITLE"
       @parser = parser
       @sections = []
+      @texts = []
 
       parser.chips.each do |e|
         case e.kind
@@ -17,8 +18,17 @@ module Yome
           @url = e.content
         when "section"
           @sections << Section.new(e)
-        else
-          # p e
+        when "text"
+          @texts << e
+        end
+      end
+
+      @texts.each do |e|
+        @sections.each do |sec|
+          if e.path == sec.section.path && e.index > sec.section.index
+            sec.add_text(e)
+            break
+          end
         end
       end
     end
