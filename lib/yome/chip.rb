@@ -29,11 +29,18 @@ module Yome
 
       i = index + 1
       while i < file.length do
-        break if file[i] =~ /YOME:([\w.,]*) *(.*)/
+        if file[i] =~ /YOME:([\w.,]*) *(.*)/
+          truncate_using_end = true if $1 == "end"
+          break
+        end
         i += 1
       end
 
       @end_index = i - 1
+
+      unless truncate_using_end
+        @end_index = [end_index, index + 8].min
+      end
     end
 
     def has_src?

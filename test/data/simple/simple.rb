@@ -42,4 +42,18 @@ class Simple
     10
   end
   # YOME:end
+
+  # YOME:6 Default distance is 8
+  def long_method2
+    1 +
+    2 +
+    3 +
+    4 +
+    5 + 
+    6 +
+    7 +
+    8 +
+    9 +
+    10
+  end
 end
