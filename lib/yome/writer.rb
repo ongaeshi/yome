@@ -9,7 +9,7 @@ module Yome
       @sections = []
       @texts = []
 
-      parser.chips.each do |e|
+      @parser.chips.each do |e|
         case e.kind
         when "title"
           @title = e.content
@@ -22,6 +22,8 @@ module Yome
         when "text"
           @texts << e
         end
+
+        e.parse(parser)
       end
 
       @texts.each do |e|

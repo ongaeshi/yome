@@ -33,12 +33,14 @@ EOS
 
       if with_text
         r << chip.content
+      end
+      
+      if chip.has_src?
         r << ""
-      end 
-
-      r << "```#{lang}"
-      r << parser.file_hash[chip.path][(chip.index + 1)..(chip.index + 8)].join("\n")
-      r << "```"
+        r << "```#{lang}"
+        r << parser.file_hash[chip.path][(chip.index + 1)..(chip.end_index)].join("\n")
+        r << "```"
+      end
 
       r.join("\n")
     end
