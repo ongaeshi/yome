@@ -23,5 +23,6 @@ class Simple
 
   # YOME: tripple
   def to_tripple
+    3 * x
   end
 end
