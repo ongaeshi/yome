@@ -26,4 +26,20 @@ class Simple
   def to_tripple
     3 * x
   end
+
+  # YOME:5 YOME:end
+  # YOME: You can display long distance with `YOME:end`.
+  def long_method
+    1 +
+    2 +
+    3 +
+    4 +
+    5 + 
+    6 +
+    7 +
+    8 +
+    9 +
+    10
+  end
+  # YOME:end
 end

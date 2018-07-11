@@ -28,7 +28,7 @@ module Yome
       file = parser.file_hash[path]
 
       i = index + 1
-      while i < index+8 do
+      while i < file.length do
         break if file[i] =~ /YOME:([\w.,]*) *(.*)/
         i += 1
       end
