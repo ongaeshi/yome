@@ -16,7 +16,8 @@ class Simple
   end
 
   # YOME:2 Method
-  # YOME: 2, 3, 4, ...
+  # YOME: The *to_double* method doubles x and returns it.
+  # YOME: double
   def to_double
     2 * x
   end
