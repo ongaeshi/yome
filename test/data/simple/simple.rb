@@ -1,6 +1,6 @@
 # YOME:title Yome simple test
 # YOME:summary This is a simple sample
-# YOME:url https://github.com/ongaeshi/yome
+# YOME:url https://github.com/ongaeshi/yome/tree/master/test/data/simple
 
 # YOME:4 require
 require "dir"
