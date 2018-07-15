@@ -22,7 +22,12 @@ module Yome
     def self.main(dir, opt)
       parser = Parser.new(dir)
       writer = Writer.new(parser, opt[:lang])
-      puts writer.result
+
+      if opt[:output]
+        File.write(opt[:output], writer.result)
+      else
+        puts writer.result
+      end
     end
   end
 end
