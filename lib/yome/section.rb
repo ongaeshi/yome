@@ -29,6 +29,7 @@ EOS
     private
 
     def src_code(parser, chip, with_text, lang)
+      lang = detect_lang if lang.empty?
       r = []
 
       if with_text
@@ -43,6 +44,24 @@ EOS
       end
 
       r.join("\n")
+    end
+
+    LANG_HASH = {
+      ".c" => "c",
+      ".cpp" => "cpp",
+      ".cs" => "csharp",
+      ".go" => "golang",
+      ".h" => "cpp",
+      ".hpp" => "cpp",
+      ".js" => "javascript",
+      ".py" => "python",
+      ".rb" => "ruby",
+      ".sh" => "bash",
+    }
+
+    def detect_lang
+      ext = File.extname(@section.path)
+      LANG_HASH[ext]
     end
   end
 end
