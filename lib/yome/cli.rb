@@ -1,22 +1,28 @@
 require "find"
-require "thor"
+require 'optparse'
 require "yome/lib"
 require "yome/parser"
 require "yome/writer"
 require "yome/version"
 
 module Yome
-  class Cli < Thor
-    desc "show DIR", "Show result."
-    def show(dir = ".", lang = "")
-      parser = Parser.new(dir)
-      writer = Writer.new(parser, lang)
-      puts writer.result
+  class Cli
+    def self.exec(argv = [])
+      opt = {lang: ""}
+
+      parser = OptionParser.new("Usage: yome [DIR] [options]")
+      parser.on('-o FILE', 'Output file name') {|v| opt[:output] = v }
+      parser.on('--lang LANG', 'Specify code blocks language') {|v| opt[:lang] = v }
+      parser.parse!(argv)
+
+      dir = argv[0] || "."
+      main(dir, opt)
     end
 
-    desc "gen DIR", "Generate YOME.md"
-    def gen(dir = ".")
-      # Save to file
+    def self.main(dir, opt)
+      parser = Parser.new(dir)
+      writer = Writer.new(parser, opt[:lang])
+      puts writer.result
     end
   end
 end
