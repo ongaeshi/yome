@@ -42,7 +42,7 @@ module Yome
         @end_index = [end_index, index + 8].min
       end
 
-      if file[end_index] =~ /^\s*$/
+      while file[end_index] =~ /^\s*$/
         @end_index -= 1
       end
     end

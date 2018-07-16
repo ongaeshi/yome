@@ -15,6 +15,7 @@ class Simple
     @x = x
   end
 
+
   # YOME:2 Method
   # YOME: The *to_double* method doubles x and returns it.
   # YOME: double
