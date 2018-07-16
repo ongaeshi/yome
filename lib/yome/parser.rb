@@ -21,7 +21,7 @@ module Yome
           begin
             contents = File.read(path).split("\n")
           rescue ArgumentError
-            puts "Skip #{path}"
+            STDERR.puts "Skip: #{path}"
             next
           end
   
