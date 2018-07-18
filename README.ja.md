@@ -46,11 +46,11 @@ class Simple
 end
 ```
 
-コメントを付けたらyomeコマンドを実行します。注釈付きコメントと関連するコードを抜粋し、指定した数字の順に並べて表示します。
+コメントを付けたらyomeコマンドを実行します。注釈付きコメントと関連するコードを抜粋して数字の順に並べて表示します。
 
 ````bash
 $ cd ~/src
-$ yome    # yome . の省略形です
+$ yome
 # Yome simple test
 This is a simple sample
 
@@ -72,7 +72,7 @@ class Simple
 $ yome -o simple.md
 ```
 
-出力結果は[simple.md](https://github.com/ongaeshi/yome/blob/master/test/data/simple/simple.md)です。
+最終出力結果は[simple.md](https://github.com/ongaeshi/yome/blob/master/test/data/simple/simple.md)です。
 
 ## リファレンスマニュアル
 ### YOME:no (セクション) 
