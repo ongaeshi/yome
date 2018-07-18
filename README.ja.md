@@ -1,6 +1,6 @@
 # Yome
 
-注釈付きコメントを使ったコードリーディング文書を生成するツールです。
+注釈付きコメントを使ってコードリーディング文書を生成するツールです。
 
 ソースコード内に`YOME:`という形式のマークアップを埋め込むと、テキストとソースコードを順番に並べたマークダウン文章を作成します。
 
@@ -16,6 +16,7 @@ Windows向けにバイナリも用意しています。
 - [Releases · ongaeshi/yome](https://github.com/ongaeshi/yome/releases/)
 
 ## 使い方
+ソースコードを読みながら注釈付きコメントを記述していきます。サンプルでは[1ファイルにのみ](https://github.com/ongaeshi/yome/blob/master/test/data/simple/simple.rb)注釈付きコメントを記述していますが複数ファイルにまたがっても構いません。
 
 ```ruby
 # YOME:title Yome simple test
@@ -45,17 +46,33 @@ class Simple
 end
 ```
 
-```
+コメントを付けたらyomeコマンドを実行します。注釈付きコメントと関連するコードを抜粋し、指定した数字の順に並べて表示します。
+
+````bash
 $ cd ~/src
-$ yome
+$ yome    # yome . の省略形です
 # Yome simple test
 This is a simple sample
+
 https://github.com/ongaeshi/yome/tree/master/test/data/simple
-.
-.
+
+
+## Define class
+*simple.rb*
+
+
+```ruby
+class Simple
+```
+````
+
+`-o`でファイルに出力します。
+
+```bash
+$ yome -o simple.md
 ```
 
-## コマンドラインオプション
+出力結果は[simple.md](https://github.com/ongaeshi/yome/blob/master/test/data/simple/simple.md)です。
 
 ## リファレンスマニュアル
 ### YOME:no (セクション) 
@@ -64,5 +81,7 @@ https://github.com/ongaeshi/yome/tree/master/test/data/simple
 ### YOME:summary
 ### YOME:url
 ### YOME:end
+
+## コマンドラインオプション
 
 ## Gitとの連携
