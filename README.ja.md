@@ -76,6 +76,23 @@ $ yome -o simple.md
 
 ## リファレンスマニュアル
 ### YOME:no (セクション) 
+`YOME:`の後に空白を空けずに数字を記述するとセクションになります。自分よりの下の`YOME: (コメント)`やソースコードを1つにまとめ、数字の順にマークダウンの`##`に変換して出力されます。
+
+数字には小数点も使えます。数値の途中が空いていてもかまいません。
+
+```ruby
+# YOME:1 First section
+class Simple
+  # YOME:10 Second section
+  def foo
+  end
+
+  # YOME:    3 This is not a section
+  def bar
+  end
+end  
+```
+
 ### YOME: (コメント)
 ### YOME:title
 ### YOME:summary
