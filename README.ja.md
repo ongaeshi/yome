@@ -94,9 +94,59 @@ end
 ```
 
 ### YOME: (コメント)
+`YOME:`の後に空白を空けるとコメントになります。マークダウンの段落になります。
+
+```ruby
+# YOME:1 First section
+# YOME: First section's comment
+class Simple
+  # YOME:10 Second section
+  # YOME: Second section's comment
+  # YOME: Next comment
+  def foo
+  end
+end  
+```
+
 ### YOME:title
+`YOME:title`の後に空白を空けるとタイトルになります。マークダウンの`#`に変換して出力されます。記述する場所はファイルの先頭でなくてもかまいません。
+
+```ruby
+# YOME:title Simple class
+
+# YOME:1 First section
+# YOME: First section's comment
+class Simple
+end  
+```
+
 ### YOME:summary
+`YOME:summary`の後に空白を空けるとサマリーになります。マークダウンの`#`の後に段落として出力されます。記述する場所はファイルの先頭でなくてもかまいません。
+
+```ruby
+# YOME:title Simple class
+# YOME:summary Behavior of simple class
+
+# YOME:1 First section
+# YOME: First section's comment
+class Simple
+end  
+```
+
 ### YOME:url
+`YOME:url`の後に空白を空けるとURLになります。マークダウンの`#`の後にURLを出力します。記述する場所はファイルの先頭でなくてもかまいません。
+
+```ruby
+# YOME:title Simple class
+# YOME:summary Behavior of simple class
+# YOME:url https://github.com/ongaeshi/yome
+
+# YOME:1 First section
+# YOME: First section's comment
+class Simple
+end  
+```
+
 ### YOME:end
 
 ## コマンドラインオプション
