@@ -148,7 +148,34 @@ end
 ```
 
 ### YOME:end
+セクションのコード抜粋範囲は8行もしくは次のセクションまでです。長いコード範囲を抜粋したいときは`YOME:end`を使ってください。
+
+```ruby
+  # YOME:5 YOME:end
+  # YOME: You can display long distance with `YOME:end`.
+  def long_method
+    1 +
+    2 +
+    3 +
+    4 +
+    5 + 
+    6 +
+    7 +
+    8 +
+    9 +
+    10
+  end
+  # YOME:end
+```
 
 ## コマンドラインオプション
+ソースコードの位置、出力ファイル名、未対応のソースコード種類などを指定することができます。
+
+```
+$ yome -h
+Usage: yome [DIR] [options]
+    -o FILE                          Output file name
+        --lang LANG                  Specify code blocks language
+```
 
 ## Gitとの連携
