@@ -179,3 +179,21 @@ Usage: yome [DIR] [options]
 ```
 
 ## Gitとの連携
+yomeは単体でも使うことができますが、Gitと組み合わせるとさらに便利になります。
+
+```
+# 読みたいソースコードをclone
+$ git clone https://github.com/mruby/mruby.git
+$ cd mruby
+
+# 作業用のブランチを切ると便利
+$ git checkout -b yome/gc
+
+# コメントを書き込んだら定期的にコミットしておきましょう
+$ git commit
+
+# 他のコードエリアを読むときにブランチを切り替えると
+# 別のドキュメントとして生成することができます。
+$ git checkout master
+$ git checkout -b yome/array
+```
